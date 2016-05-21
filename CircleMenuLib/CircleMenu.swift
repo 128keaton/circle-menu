@@ -246,7 +246,7 @@ public class CircleMenu: UIButton {
     }
   // MARK: animations
   
-  private func buttonsAnimationIsShow(isShow isShow: Bool, duration: Double, hideDelay: Double = 0) {
+  @objc private func buttonsAnimationIsShow(isShow isShow: Bool, duration: Double, hideDelay: Double = 0) {
     guard let buttons = self.buttons else {
       return
     }
@@ -264,6 +264,8 @@ public class CircleMenu: UIButton {
             gradientView.colors = [UIColor(hue: 11/360, saturation: 73/100, brightness: 83/100, alpha: 0.7), UIColor(hue: 337/360, saturation: 69/100, brightness: 65/100, alpha: 0.7)]
             gradientView.backgroundColor = UIColor.clearColor()
             gradientView.alpha = 0
+            let dismiss = UITapGestureRecognizer.init(target: self, action: #selector(CircleMenu.tapDismiss))
+            gradientView.addGestureRecognizer(dismiss)
             self.superview!.insertSubview(gradientView, atIndex: (superview?.subviews.indexOf(self))! - self.buttonsCount)
         }
         showGradientView()
@@ -282,6 +284,14 @@ public class CircleMenu: UIButton {
          removeGradientView()
     }
   }
+    func tapDismiss(){
+        let isShow = !buttonsIsShown()
+        let duration  = isShow ? 0.5 : 0.2
+        buttonsAnimationIsShow(isShow: isShow, duration: duration)
+        
+        tapBounceAnimation()
+        tapRotatedAnimation(0.3, isSelected: isShow)
+    }
   
   private func tapBounceAnimation() {
     self.transform = CGAffineTransformMakeScale(0.9, 0.9)
