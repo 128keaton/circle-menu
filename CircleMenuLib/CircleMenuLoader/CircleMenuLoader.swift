@@ -38,8 +38,9 @@ public class CircleMenuLoader: UIView {
 
         if let aSuperView = circleMenu.superview {
             aSuperView.insertSubview(self, belowSubview: circleMenu)
+            aSuperView.backgroundColor = UIColor.clearColor()
         }
-
+        
         circle = createCircle(radius, strokeWidth: strokeWidth, color: color)
         createConstraints(circleMenu, radius: radius)
 
@@ -122,7 +123,7 @@ public class CircleMenuLoader: UIView {
 
     private func createRoundView(rect: CGRect, color: UIColor?) {
         let roundView = Init(UIView(frame: rect)) {
-            $0.backgroundColor = UIColor.blackColor()
+            $0.backgroundColor = UIColor.redColor()
             $0.layer.cornerRadius = rect.size.width / 2.0
             $0.backgroundColor = color
         }
