@@ -264,7 +264,7 @@ public class CircleMenu: UIButton {
             gradientView.colors = [UIColor(hue: 11/360, saturation: 73/100, brightness: 83/100, alpha: 0.7), UIColor(hue: 337/360, saturation: 69/100, brightness: 65/100, alpha: 0.7)]
             gradientView.backgroundColor = UIColor.clearColor()
             gradientView.alpha = 0
-            self.superview!.insertSubview(gradientView, atIndex: 0)
+            self.superview!.insertSubview(gradientView, atIndex: (superview?.subviews.indexOf(self))! - self.buttonsCount)
         }
         showGradientView()
        
